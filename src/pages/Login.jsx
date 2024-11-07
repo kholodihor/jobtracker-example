@@ -18,7 +18,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:4000/api/auth/login', formData);
+      const res = await axios.post('https://job-tracker-backend-x.vercel.app/api/auth/login', formData);
       const { access_token, refresh_token } = res.data;
 
       localStorage.setItem('access_token', access_token);
@@ -31,11 +31,11 @@ const LoginForm = () => {
   };
 
   const handleGoogleLogin = async() => {
-    window.location.href = 'http://localhost:4000/api/auth/google';
+    window.location.href = 'https://job-tracker-backend-x.vercel.app/api/auth/google';
   };
 
   const handleGithubLogin = () => {
-    window.location.href = 'http://localhost:4000/api/auth/github';
+    window.location.href = 'https://job-tracker-backend-x.vercel.app/api/auth/github';
   };
 
   return (

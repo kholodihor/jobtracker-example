@@ -9,7 +9,7 @@ const MainPage = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/user/profile')
+        const res = await axios.get('https://job-tracker-backend-x.vercel.app/api/user/profile')
         setUser(res.data.user)
         console.log(user)
       } catch (error) {

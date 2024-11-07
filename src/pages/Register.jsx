@@ -20,7 +20,7 @@ const RegisterForm = () => {
         e.preventDefault();
         // Add form submission logic here, e.g., call an API or validate input
         // console.log('Form submitted:', formData);
-        const res = await axios.post('http://localhost:4000/api/auth/register', formData);
+        const res = await axios.post('https://job-tracker-backend-x.vercel.app/api/auth/register', formData);
         console.log(res.data)
     };
 
