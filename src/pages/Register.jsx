@@ -1,7 +1,9 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 const RegisterForm = () => {
+    const { register } = useAuth();
+    
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -18,10 +20,7 @@ const RegisterForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add form submission logic here, e.g., call an API or validate input
-        // console.log('Form submitted:', formData);
-        const res = await axios.post('https://job-tracker-backend-x.vercel.app/api/auth/register', formData);
-        console.log(res.data)
+        await register(formData.username, formData.email, formData.password)
     };
 
     return (

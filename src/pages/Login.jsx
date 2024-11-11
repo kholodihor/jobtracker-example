@@ -1,7 +1,8 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { useAuth } from '../hooks/useAuth'
 
 const LoginForm = () => {
+  const { login,handleGithubLogin,handleGoogleLogin } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,25 +18,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('https://job-tracker-backend-x.vercel.app/api/auth/login', formData);
-      const { access_token, refresh_token } = res.data;
-
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
-
-      console.log('Login successful');
-    } catch (error) {
-      console.error('Login failed:', error.response?.data || error.message);
-    }
-  };
-
-  const handleGoogleLogin = async() => {
-    window.location.href = 'https://job-tracker-backend-x.vercel.app/api/auth/google';
-  };
-
-  const handleGithubLogin = () => {
-    window.location.href = 'https://job-tracker-backend-x.vercel.app/api/auth/github';
+    await login(formData.email, formData.password)
   };
 
   return (
@@ -57,7 +40,7 @@ const LoginForm = () => {
         <div className="mb-6">
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
           <input
-            type="password"
+            type="text"
             id="password"
             name="password"
             value={formData.password}
